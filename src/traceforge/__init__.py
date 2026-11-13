@@ -1,0 +1,1 @@
+"""Agent execution diagnostics and deterministic event replay."""
