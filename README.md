@@ -23,3 +23,9 @@ The demo generates an agent trace with a failing validation span. Use the emitte
 
 ## Limitations and security
 This is a functional observability core, not a distributed production platform. There is no dashboard, OpenTelemetry receiver, multi-tenant authorization, or full side-effect replay yet. Callers must avoid passing sensitive data as `output`: the store currently persists that field without redaction. No diagnostic-time improvement claims are validated.
+
+## Statistical monitoring extension
+
+`traceforge.anomaly` provides robust median/MAD latency flags and labelled precision, recall and F1 metrics. Run `pytest -q tests/test_anomaly.py`. The zero-MAD fallback is deliberately sensitive and should be replaced with a calibrated noise floor for production telemetry.
+
+These functions are not yet integrated with the trace collector or dashboard. **Planned next:** group traces by task/tool, learn calibrated baselines, evaluate seeded failures without leakage, capture OpenTelemetry traces, instrument multiple services, and measure debug-time benefits in controlled experiments.
